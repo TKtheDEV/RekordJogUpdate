@@ -1,7 +1,7 @@
 import mido
 
-def jog_incremental(ims, midi_out, wheel_messages_counter, TURN_CLOCK_SPEED, TURN_COUNTER_SPEED):
-    if ims.control == 0x09 or ims.control == 0x0A:
+def jog_incremental(ims, midi_out, wheel_messages_counter, TURN_CLOCK_SPEED, TURN_COUNTER_SPEED, JOG_SIDE_CODE, JOG_TOP_CODE):
+    if ims.control == JOG_SIDE_CODE or ims.control == JOG_TOP_CODE:
         wheel_messages_counter += 1
         if wheel_messages_counter % 4 == 0:
             if ims.value == 0x01:

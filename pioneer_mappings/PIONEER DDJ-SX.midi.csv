@@ -31,5 +31,5 @@ JogTouch,JogTouch+Shift,JogTouch,9008,4,5,,,,,,,,RO,Touch
 WheelPitchBend,WheelPitchBend,JogRotate,B009,1,2,,,,,,,,RO,Pitch Bend
 WheelSearch,WheelSearch,JogRotate,B009,4,5,,,,,,,,RO,Pitch Bend
 ,,,,,,,,,,,,,,
-TempoSlider,TempoSlider,KnobSliderHiRes,B070,1,2,,,,,,,,Fast,Tempo Control
-TempoSlider,TempoSlider+Shift,KnobSliderHiRes,B070,4,5,,,,,,,,Fast,Tempo Control
+TempoSlider,TempoSlider,KnobSlider,B070,1,2,,,,,,,,Fast,Tempo Control
+TempoSlider,TempoSlider+Shift,KnobSlider,B070,4,5,,,,,,,,Fast,Tempo Control
