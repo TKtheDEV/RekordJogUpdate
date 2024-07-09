@@ -1,0 +1,2 @@
+from functions.set_midi_devices import set_midi_devices
+set_midi_devices()

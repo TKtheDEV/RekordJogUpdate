@@ -13,17 +13,20 @@ PIONEER_PITCH_CONTROL = 0x70
 
 def main():
     midi_inp, midi_out = check_config()
-    with mido.open_input(midi_inp) as midi_inp, mido.open_output(midi_out) as midi_out:
-        rekordjog_start_sequence()
-        wheel_messages_counter = 3
-        while True:
-            ims = midi_inp.receive()
-            if ims.type == 'control_change':
-                wheel_messages_counter = jog_incremental(ims, midi_out, wheel_messages_counter, TURN_CLOCK_SPEED, TURN_COUNTER_SPEED, JOG_SIDE_CODE, JOG_TOP_CODE)
-                tempo_reverse(ims, midi_out, PIONEER_PITCH_CONTROL)
+    try:
+        with mido.open_input(midi_inp) as midi_inp, mido.open_output(midi_out) as midi_out:
+            rekordjog_start_sequence()
+            wheel_messages_counter = 3
+            while True:
+                ims = midi_inp.receive()
+                if ims.type == 'control_change':
+                    wheel_messages_counter = jog_incremental(ims, midi_out, wheel_messages_counter, TURN_CLOCK_SPEED, TURN_COUNTER_SPEED, JOG_SIDE_CODE, JOG_TOP_CODE)
+                    tempo_reverse(ims, midi_out, PIONEER_PITCH_CONTROL)
 
-            if ims.type == 'note_on' or ims.type == 'note_off':
-                midi_out.send(mido.Message(ims.type, channel=ims.channel, note=ims.note, velocity=ims.velocity))
+                if ims.type == 'note_on' or ims.type == 'note_off':
+                    midi_out.send(mido.Message(ims.type, channel=ims.channel, note=ims.note, velocity=ims.velocity))
+    except KeyboardInterrupt:
+        print("\nClosing RekordJog, bye.")
 
 if __name__ == "__main__":
     main()
