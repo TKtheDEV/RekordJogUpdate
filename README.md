@@ -77,7 +77,7 @@ You need to go to "MIDI" and change the Setting for PIONEER DDJ-SX Tempo from 0h
 
 For better precision, 2 faders are used for each deck pitch control. 2-nd fader increments smaller values.
 
-##For Developers:
+## For Developers:
 ### How to map jog wheels
 
 First, you need to figure out what MIDI message is sent on your jog turn. Then analyze which values are sent at different rotation speed.
