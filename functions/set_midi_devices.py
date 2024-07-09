@@ -1,6 +1,7 @@
 import configparser
 import mido
 from .clear_terminal import clear_terminal
+
 def set_midi_devices():
 
     clear_terminal()
