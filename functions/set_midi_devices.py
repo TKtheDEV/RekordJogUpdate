@@ -1,5 +1,6 @@
 import configparser
 import mido
+import os
 from .clear_terminal import clear_terminal
 
 def set_midi_devices():
@@ -15,12 +16,16 @@ def set_midi_devices():
 
     clear_terminal()
 
-    output_devices = mido.get_output_names()
-    for i, device in enumerate(output_devices, start=1):
-        print(f"{i}. {device}")
+    if os.name == 'nt':
+        output_devices = mido.get_output_names()
+        for i, device in enumerate(output_devices, start=1):
+            print(f"{i}. {device}")
 
-    output_choice = int(input("Select DDJ-SX (emulated controller): ")) - 1
-    selected_output = output_devices[output_choice] if 0 <= output_choice < len(output_devices) else None
+        output_choice = int(input("Select DDJ-SX (emulated controller): ")) - 1
+        selected_output = output_devices[output_choice] if 0 <= output_choice < len(output_devices) else None
+
+    else:
+        selected_output = 'PIONEER DDJ-SX, True'
 
     clear_terminal()
 
@@ -32,6 +37,6 @@ def set_midi_devices():
 
     with open('config.ini', 'w') as configfile:
         config.write(configfile)
-    print("MIDI devices have been saved to config.ini")
+    print("MIDI devices and OS have been saved to config.ini")
 
     return selected_input, selected_output
